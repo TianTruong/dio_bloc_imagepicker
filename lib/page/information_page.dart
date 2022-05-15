@@ -1,9 +1,9 @@
-import 'package:dio_bloc_imagepicker/bloc/api_bloc/api_bloc.dart';
+
 import 'package:flutter/material.dart';
-import 'package:dio_bloc_imagepicker/constants/constants.dart';
-import 'package:dio_bloc_imagepicker/model/model.dart';
-// import 'package:dio_bloc_imagepicker/client/post_client.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dio_bloc_imagepicker/model/model.dart';
+import 'package:dio_bloc_imagepicker/constants/constants.dart';
+import 'package:dio_bloc_imagepicker/bloc/api_bloc/api_bloc.dart';
 
 class InformationPageWidget extends StatefulWidget {
   final Post post;
@@ -42,14 +42,12 @@ class _InformationPageWidgetState extends State<InformationPageWidget> {
             );
   }
 }
-
 class AppbarWidget extends StatefulWidget {
   const AppbarWidget({Key? key}) : super(key: key);
 
   @override
   State<AppbarWidget> createState() => _AppbarWidgetState();
 }
-
 class _AppbarWidgetState extends State<AppbarWidget> {
   @override
   Widget build(BuildContext context) {
@@ -84,7 +82,6 @@ class _AppbarWidgetState extends State<AppbarWidget> {
     );
   }
 }
-
 class InformationWidget extends StatefulWidget {
   final Post post;
   const InformationWidget({Key? key, required this.post}) : super(key: key);
@@ -92,7 +89,6 @@ class InformationWidget extends StatefulWidget {
   @override
   State<InformationWidget> createState() => _InformationWidgetState();
 }
-
 class _InformationWidgetState extends State<InformationWidget> {
   @override
   Widget build(BuildContext context) {
@@ -128,7 +124,6 @@ class _InformationWidgetState extends State<InformationWidget> {
     );
   }
 }
-
 class UpdateWidget extends StatefulWidget {
   final Post post;
   const UpdateWidget({Key? key, required this.post}) : super(key: key);
@@ -136,7 +131,6 @@ class UpdateWidget extends StatefulWidget {
   @override
   State<UpdateWidget> createState() => _UpdateWidgetState();
 }
-
 class _UpdateWidgetState extends State<UpdateWidget> {
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
@@ -234,7 +228,6 @@ class _UpdateWidgetState extends State<UpdateWidget> {
     );
   }
 }
-
 class DeleteWidget extends StatefulWidget {
   final Post post;
   const DeleteWidget({ Key? key,required this.post }) : super(key: key);
@@ -242,7 +235,6 @@ class DeleteWidget extends StatefulWidget {
   @override
   State<DeleteWidget> createState() => _DeleteWidgetState();
 }
-
 class _DeleteWidgetState extends State<DeleteWidget> {
 
   @override

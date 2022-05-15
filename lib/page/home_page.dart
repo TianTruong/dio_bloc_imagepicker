@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dio_bloc_imagepicker/model/model.dart';
 import 'package:dio_bloc_imagepicker/page/information_page.dart';
 import 'package:dio_bloc_imagepicker/constants/constants.dart';
-// import 'package:dio_bloc_imagepicker/client/post_client.dart';
 import 'package:dio_bloc_imagepicker/bloc/api_bloc/api_bloc.dart';
 import 'package:dio_bloc_imagepicker/bloc/imagepicker_bloc/image_picker_bloc.dart';
 
