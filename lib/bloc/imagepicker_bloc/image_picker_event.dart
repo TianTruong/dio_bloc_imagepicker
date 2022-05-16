@@ -4,7 +4,10 @@ part of 'image_picker_bloc.dart';
 abstract class ImagePickerEvent {}
 
 class SelectImageEvent extends ImagePickerEvent {
-  final XFile images;
+  final ImageSource source;
 
-  SelectImageEvent(this.images);
+  SelectImageEvent(this.source);
+}
+
+class SelectMultiImageEvent extends ImagePickerEvent {
 }

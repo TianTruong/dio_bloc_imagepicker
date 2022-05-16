@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
             children: const [
               ImageWidget(),
               SearchWidget(),
+              ImagePostWidget(),
               Padding(
                 padding: EdgeInsets.only(left: 15, top: 10, bottom: 10),
                 child: Text('Posts', style: AppTextStyle.homeTextStyle),
@@ -75,11 +76,9 @@ class _ImageWidgetState extends State<ImageWidget> {
                               title: const Text('Camera'),
                               onTap: () async {
                                 Navigator.of(context).pop();
-                                final XFile? images = await _picker.pickImage(
-                                    source: ImageSource.camera);
-                                if (images != null) {
-                                  imagePickerBloc.add(SelectImageEvent(images));
-                                }
+
+                                imagePickerBloc
+                                    .add(SelectImageEvent(ImageSource.camera));
                               },
                             ),
                             ListTile(
@@ -87,11 +86,8 @@ class _ImageWidgetState extends State<ImageWidget> {
                               title: const Text('Gallery'),
                               onTap: () async {
                                 Navigator.of(context).pop();
-                                final XFile? images = await _picker.pickImage(
-                                    source: ImageSource.gallery);
-                                if (images != null) {
-                                  imagePickerBloc.add(SelectImageEvent(images));
-                                }
+                                imagePickerBloc
+                                    .add(SelectImageEvent(ImageSource.gallery));
                               },
                             )
                           ],
@@ -99,9 +95,9 @@ class _ImageWidgetState extends State<ImageWidget> {
                       ));
             },
             child: BlocBuilder<ImagePickerBloc, ImagePickerState>(
-              builder: (context, state) => state.images != null
+              builder: (context, state) => state.image != null
                   ? Image.file(
-                      File(state.images!.path),
+                      File(state.image!.path),
                       fit: BoxFit.cover,
                       cacheHeight: 160,
                       cacheWidth: 160,
@@ -122,6 +118,110 @@ class _ImageWidgetState extends State<ImageWidget> {
                   Text('Truong Phuoc Tin', style: AppTextStyle.homeTextStyle)),
         ),
       ],
+    );
+  }
+}
+
+class ImagePostWidget extends StatefulWidget {
+  const ImagePostWidget({Key? key}) : super(key: key);
+
+  @override
+  State<ImagePostWidget> createState() => _ImagePostWidgetState();
+}
+
+class _ImagePostWidgetState extends State<ImagePostWidget> {
+  @override
+  Widget build(BuildContext context) {
+    final imagePickerBloc = BlocProvider.of<ImagePickerBloc>(context);
+
+    return InkWell(
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (context) => Container(
+                  height: 150,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.camera_alt),
+                        title: const Text('One'),
+                        onTap: () async {
+                          Navigator.of(context).pop();
+                          imagePickerBloc
+                              .add(SelectImageEvent(ImageSource.gallery));
+                        },
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.image),
+                        title: const Text('Multi'),
+                        onTap: () async {
+                          Navigator.of(context).pop();
+                          imagePickerBloc.add(SelectMultiImageEvent());
+                        },
+                      )
+                    ],
+                  ),
+                ));
+      },
+      child: BlocBuilder<ImagePickerBloc, ImagePickerState>(
+          builder: (context, state) => state.image != null
+              ? Container(
+                height: 200,
+                child: Image.file(
+                    File(state.image!.path),
+                    fit: BoxFit.cover,
+                    cacheHeight: 160,
+                    cacheWidth: 160,
+                  ),
+              )
+              : state.lstImage != null
+                  ? Container(
+                      height: 200,
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3),
+                          itemCount: state.lstImage?.length,
+                          itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: Image.file(
+                                  File(state.lstImage![index].path),
+                                  fit: BoxFit.cover,
+                                  cacheHeight: 160,
+                                  cacheWidth: 160,
+                                ),
+                              )))
+                  : TextButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) => Container(
+                                  height: 150,
+                                  child: Column(
+                                    children: [
+                                      ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('Chọn 1 ảnh'),
+                                        onTap: () async {
+                                          Navigator.of(context).pop();
+                                          imagePickerBloc.add(SelectImageEvent(
+                                              ImageSource.gallery));
+                                        },
+                                      ),
+                                      ListTile(
+                                        leading: const Icon(Icons.image),
+                                        title: const Text('Chọn nhiều ảnh'),
+                                        onTap: () async {
+                                          Navigator.of(context).pop();
+                                          imagePickerBloc
+                                              .add(SelectMultiImageEvent());
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: const Text('Thêm ảnh', style: TextStyle(fontSize: 20),))),
     );
   }
 }

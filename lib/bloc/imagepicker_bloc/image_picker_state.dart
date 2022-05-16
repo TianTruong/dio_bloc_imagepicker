@@ -2,10 +2,14 @@ part of 'image_picker_bloc.dart';
 
 @immutable
 class ImagePickerState {
-  final XFile? images;
+  final XFile? image;
+  final List<XFile>? lstImage;
 
-  ImagePickerState({this.images});
+  ImagePickerState({this.image, this.lstImage});
 
-  ImagePickerState copywith({XFile? images}) =>
-      ImagePickerState(images: images ?? this.images);
+  ImagePickerState selectImage({XFile? image}) =>
+      ImagePickerState(image: image ?? this.image);
+
+  ImagePickerState selectMultiImage({List<XFile>? lstImage}) =>
+      ImagePickerState(lstImage: lstImage ?? this.lstImage);
 }
