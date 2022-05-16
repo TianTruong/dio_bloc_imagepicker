@@ -143,8 +143,8 @@ class _ImagePostWidgetState extends State<ImagePostWidget> {
                   child: Column(
                     children: [
                       ListTile(
-                        leading: const Icon(Icons.camera_alt),
-                        title: const Text('One'),
+                        leading: const Icon(Icons.image),
+                        title: const Text('Chọn 1 ảnh'),
                         onTap: () async {
                           Navigator.of(context).pop();
                           imagePickerBloc
@@ -153,7 +153,7 @@ class _ImagePostWidgetState extends State<ImagePostWidget> {
                       ),
                       ListTile(
                         leading: const Icon(Icons.image),
-                        title: const Text('Multi'),
+                        title: const Text('Chọn nhiều ảnh'),
                         onTap: () async {
                           Navigator.of(context).pop();
                           imagePickerBloc.add(SelectMultiImageEvent());
