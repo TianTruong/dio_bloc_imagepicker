@@ -11,6 +11,15 @@ class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
     on<SelectMultiImageEvent>(_onSelectMultiImageEvent);
   }
 
+  Future<void> _onSelectAvatarEvent(
+      SelectImageEvent event, Emitter<ImagePickerState> emit) async {
+    final ImagePicker _picker = ImagePicker();
+
+    final XFile? avatar = await _picker.pickImage(source: event.source);
+
+    emit(state.selectAvatar(avatar: avatar));
+  }
+
   Future<void> _onSelectImageEvent(
       SelectImageEvent event, Emitter<ImagePickerState> emit) async {
     final ImagePicker _picker = ImagePicker();

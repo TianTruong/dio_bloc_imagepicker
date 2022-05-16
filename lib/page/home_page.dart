@@ -78,7 +78,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                                 Navigator.of(context).pop();
 
                                 imagePickerBloc
-                                    .add(SelectImageEvent(ImageSource.camera));
+                                    .add(SelectAvatarEvent(ImageSource.camera));
                               },
                             ),
                             ListTile(
@@ -87,7 +87,7 @@ class _ImageWidgetState extends State<ImageWidget> {
                               onTap: () async {
                                 Navigator.of(context).pop();
                                 imagePickerBloc
-                                    .add(SelectImageEvent(ImageSource.gallery));
+                                    .add(SelectAvatarEvent(ImageSource.gallery));
                               },
                             )
                           ],
