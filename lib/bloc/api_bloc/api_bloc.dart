@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio_bloc_imagepicker/model/model.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
