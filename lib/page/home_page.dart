@@ -286,7 +286,7 @@ class _PostPageViewState extends State<PostPageView> {
         create: (context) => ApiBloc()..add(getPostEvent()),
         child: BlocBuilder<ApiBloc, ApiState>(
             builder: (context, state) => Container(
-                  height: 700,
+                  height: 400,
                   width: double.infinity,
                   child: ListView.builder(
                       // scrollDirection: Axis.horizontal,

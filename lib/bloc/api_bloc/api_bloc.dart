@@ -33,7 +33,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       }).toList();
       lstPost = resultJson;
     } else {
-      throw Exception('Failed to lead jobs from API');
+      throw Exception('Failed');
     }
 
     emit(state.ApiGet(lstPost: lstPost));
@@ -48,7 +48,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     if (strRes.statusCode == 200) {
       emit(state.ApiGetPostFetch(post: post));
     } else {
-      throw Exception('Failed to lead jobs from API');
+      throw Exception('Failed');
     }
   }
 
@@ -65,7 +65,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       updatedPost = PostInfo.fromJson(strRes.data);
       emit(state.ApiUpdatePosst(updatePost: updatedPost));
     } else {
-      throw Exception('Failed to lead jobs from API');
+      throw Exception('Failed');
     }
   }
 
@@ -76,7 +76,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       // print('Post deleted!');
       emit(state.ApiDeletePost());
     } catch (e) {
-      Exception('Failed to lead jobs from API');
+      Exception('Failed');
     }
   }
 }
