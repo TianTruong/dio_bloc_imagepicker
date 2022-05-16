@@ -95,9 +95,9 @@ class _ImageWidgetState extends State<ImageWidget> {
                       ));
             },
             child: BlocBuilder<ImagePickerBloc, ImagePickerState>(
-              builder: (context, state) => state.image != null
+              builder: (context, state) => state.avatar != null
                   ? Image.file(
-                      File(state.image!.path),
+                      File(state.avatar!.path),
                       fit: BoxFit.cover,
                       cacheHeight: 160,
                       cacheWidth: 160,
