@@ -7,12 +7,14 @@ part 'image_picker_state.dart';
 
 class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
   ImagePickerBloc() : super(ImagePickerState()) {
+    on<SelectAvatarEvent>(_onSelectAvatarEvent);
     on<SelectImageEvent>(_onSelectImageEvent);
     on<SelectMultiImageEvent>(_onSelectMultiImageEvent);
+
   }
 
   Future<void> _onSelectAvatarEvent(
-      SelectImageEvent event, Emitter<ImagePickerState> emit) async {
+      SelectAvatarEvent event, Emitter<ImagePickerState> emit) async {
     final ImagePicker _picker = ImagePicker();
 
     final XFile? avatar = await _picker.pickImage(source: event.source);
